@@ -34,14 +34,11 @@ def main():
 
 def dashboard():
     print()
-
     account_info = client.get_account_info()
     collateral = (account_info['collateral'])
     free_collateral = account_info['freeCollateral']
-
     print(f'Account collateral: {collateral}$')
     print(f'Free collateral:    {free_collateral}$')
-
     main()
 
 def balances():
@@ -60,13 +57,11 @@ def balances():
     
     except IndexError:
         pass
-
     main()
 
 def open_orders():
     print()
     orders = client.get_open_orders()
-
     i = 0
     try:
         while True:
@@ -75,7 +70,6 @@ def open_orders():
 
     except IndexError:
         pass
-
     main()
 
 def get_positions():
@@ -99,7 +93,6 @@ def get_positions():
 
 def place_order(order):
     print()
-
     try:
         market = order[0]
         side = order[1]
@@ -111,19 +104,16 @@ def place_order(order):
 
     except:
         print("The API was unable to fulfill your request. Enter the 'help' command to see how to properly submit an order using the CLI.")
-
     main()
 
 def get_price(market):
     print()
-
     try:
         price = client.get_market(market)
         print(f"{price['name']}: {price['price']}, 24 Hour Change: {price['change24h'] * 100}%")
 
     except:
         print('That is not a valid market')
-
     main()
 
 def help():
@@ -134,8 +124,8 @@ def help():
     print()
     print("To trade enter: trade ASSET_TICKER BUY_OR_SELL PRICE_YOU_WISH_TO_BUY_AT AMOUNT_OF_THE_ASSET_YOU_WISH_TO_BUY")
     print("For example, the following command will buy 1 BTC at a price of 50000$: 'trade BTC-PERP buy 50000 1'")
-
     main()
-    
-dashboard()
-main()
+
+if __name__ == '__main__':
+    dashboard()
+    main()
